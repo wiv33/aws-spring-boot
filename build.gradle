@@ -27,7 +27,7 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'com.h2database:h2'
+    compile 'com.h2database:h2-mvstore:1.4.199'
     testCompile 'org.springframework.boot:spring-boot-starter-test:2.1.7.RELEASE'
 }
 
