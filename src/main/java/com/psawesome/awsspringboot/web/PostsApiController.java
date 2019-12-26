@@ -33,4 +33,10 @@ public class PostsApiController {
     public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
     }
+
+    @DeleteMapping("/{id}")
+    public Long delete(@PathVariable Long id) {
+        postsService.deleteMethod(id);
+        return id;
+    }
 }

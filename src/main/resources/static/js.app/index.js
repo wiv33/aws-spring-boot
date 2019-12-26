@@ -6,6 +6,9 @@ const main = {
         });
         $('#btn-update').on("click", function () {
             _this.update();
+        });
+        $('#btn-delete').on('click', () => {
+            _this.deleteFunc();
         })
     },
     save: () => {
@@ -14,7 +17,7 @@ const main = {
             author: $("#author").val(),
             content: $("#content").val()
         };
-        
+
         $.ajax({
             url: '/api/v1/posts',
             type: 'POST',
@@ -41,13 +44,28 @@ const main = {
             dataType: 'JSON',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify(data)
-        }).done(()=>{
+        }).done(() => {
             alert("글이 수정되었습니다.");
             window.location.href = '/';
         }).catch((err) => {
             console.log(err);
             alert(JSON.stringify(err));
         });
+    },
+    deleteFunc: () => {
+        let id = $('#id').val();
+
+        $.ajax({
+            url: '/api/v1/posts/' + id,
+            type: 'DELETE',
+            dataType: 'JSON',
+            contentType: "application/json; charset=UTF-8"
+        }).done(() => {
+            alert("글이 삭제되었습니다.");
+            window.location.href = '/';
+        }).catch((err) => {
+            console.log(JSON.stringify(err));
+        })
     }
 };
 
