@@ -32,7 +32,7 @@ public class PostsService {
     public Long update(Long id, PostsUpdateRequestDto dto) {
         Posts posts = repository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
-        posts.update(dto.getTitle(), dto.getContent(), dto.getAuthor());
+        posts.update(dto.getTitle(), dto.getContent());
 
         return id;
     }

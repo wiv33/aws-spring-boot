@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 @Getter
 public class PostsUpdateRequestDto {
 
-    private String title, content, author;
+    private String title, content;
 
     @Builder
-    public PostsUpdateRequestDto(String title, String content, String author) {
+    public PostsUpdateRequestDto(String title, String content) {
         this.title = title;
         this.content = content;
-        this.author = author;
     }
+
 }
