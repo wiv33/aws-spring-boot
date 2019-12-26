@@ -138,4 +138,9 @@ public class PostsApiControllerTest {
         assertThat(response.getBody().getAuthor()).isEqualTo(expectedAuthor);
 
     }
+
+    @Test
+    public void delete_posts() {
+
+    }
 }

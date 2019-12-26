@@ -1,14 +1,17 @@
 package com.psawesome.awsspringboot.web;
 
-import org.assertj.core.api.Assertions;
+import com.psawesome.awsspringboot.domain.posts.PostsRepository;
+import com.psawesome.awsspringboot.web.dto.PostsSaveRequestDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * package: com.psawesome.awsspringboot.web
@@ -28,7 +31,39 @@ public class IndexControllerTest {
         String body = this.restTemplate.getForObject("/", String.class);
 
         // Then
-        Assertions.assertThat(body).contains("스프링 부트로 시작하는 웹 서비스");
+        assertThat(body).contains("스프링 부트로 시작하는 웹 서비스 Ver.2");
+    }
+
+
+    @Test
+    public void postsSavePageTest() {
+        // When
+        String body = restTemplate.getForObject("/posts/save", String.class);
+
+        // Then
+        assertThat(body).contains("게시글 등록");
+
+    }
+
+    @Test
+    public void postsUpdatePageTest() {
+        // Given
+        PostsSaveRequestDto dto = PostsSaveRequestDto
+                .builder()
+                .title("Hello World")
+                .content("My Body")
+                .author("PS AS")
+                .build();
+
+        HttpEntity<PostsSaveRequestDto> entity = new HttpEntity<>(dto);
+        ResponseEntity<Long> responseEntity = restTemplate.postForEntity("/api/v1/posts", entity, Long.class);
+        long valueId = responseEntity.getBody().longValue();
+
+        // When
+        String body = restTemplate.getForObject("/posts/update/ " + valueId, String.class);
+
+        // Then
+        assertThat(body).contains("게시글 수정");
     }
 
 
