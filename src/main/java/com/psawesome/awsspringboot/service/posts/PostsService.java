@@ -7,8 +7,10 @@ import com.psawesome.awsspringboot.web.dto.PostsSaveRequestDto;
 import com.psawesome.awsspringboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * package: com.psawesome.awsspringboot.service.posts
@@ -39,5 +41,13 @@ public class PostsService {
         Posts entity = repository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return repository.findAllDesc()
+                .stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
