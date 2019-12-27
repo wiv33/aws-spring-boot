@@ -32,4 +32,4 @@ out/
 .vscode/
 
 src/main/generated/
-src/main/resources/application-google.yml
+src/main/resources/application-oauth.yml
