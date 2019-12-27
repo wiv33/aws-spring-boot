@@ -30,3 +30,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+src/main/generated/
+src/main/resources/application-google.yml
