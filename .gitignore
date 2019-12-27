@@ -33,3 +33,5 @@ out/
 
 src/main/generated/
 src/main/resources/application-oauth.yml
+
+#Test
