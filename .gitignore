@@ -32,6 +32,4 @@ out/
 .vscode/
 
 src/main/generated/
-src/main/resources/application-oauth.yml
-
-#Test
+src/main/resources/application-oauth.properties
